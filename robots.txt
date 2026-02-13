@@ -1,8 +1,6 @@
-Allow all web crawlers
-User-agent: * 
-Disallow: /cgi-bin/ 
-Disallow: /tmp/ 
+User-agent: *
+Disallow: /cgi-bin/
+Disallow: /tmp/
 Disallow: /private/
 
-Link to sitemap
 Sitemap: https://www.pisocat.com/sitemap.xml
