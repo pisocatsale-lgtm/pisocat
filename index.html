@@ -1,252 +1,620 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PisoCat - Smart Real Estate Platform | Cataluña</title>
-    <meta name="description" content="PisoCat: La plataforma inteligente de inmuebles en Cataluña. Tecnología PropTech de vanguardia.">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+    <title>PisoCat - Premium PropTech Brand</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-gold: #C9A14A;
-            --gold-hover: #FFD700;
-            --dark-blue: #0B1026;
-            --mid-blue: #1A1F4B;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-        }
-
-        * {
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
         body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background: radial-gradient(circle at top, var(--mid-blue), var(--dark-blue));
+            font-family: 'Inter', sans-serif;
+            background-color: #050508;
             color: white;
-            line-height: 1.6;
-            overflow-x: hidden;
+            padding: 40px 20px;
         }
 
-        /* Hero Section */
-        .hero {
-            padding: 150px 20px 100px;
-            text-align: center;
-            background: url('https://www.transparenttextures.com/patterns/dark-matter.png');
-        }
-
-        h1 {
-            font-size: clamp(50px, 8vw, 90px);
-            margin: 0;
-            font-weight: 700;
-            letter-spacing: -2px;
-            background: linear-gradient(to bottom, #ffffff, var(--primary-gold));
+        .text-gradient-gold {
+            background: linear-gradient(180deg, #f3d6ad 0%, #c4965d 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            drop-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
-        h2 {
-            font-weight: 300;
-            font-size: clamp(18px, 4vw, 24px);
-            color: rgba(255,255,255,0.8);
-            margin: 10px 0;
+        .text-gradient-blue {
+            background: linear-gradient(180deg, #93c5fd 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .hero p {
-            max-width: 700px;
-            margin: 30px auto;
-            font-size: 1.1rem;
-            color: #d1d1d1;
-        }
-
-        .btn {
-            background: var(--primary-gold);
-            padding: 18px 45px;
-            color: #000;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            display: inline-block;
-            box-shadow: 0 10px 20px rgba(201, 161, 74, 0.3);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .btn:hover {
-            background: var(--gold-hover);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(201, 161, 74, 0.5);
-        }
-
-        /* Image Showcase */
-        .section-images {
+        .glass-card {
             background: rgba(255, 255, 255, 0.03);
-            padding: 100px 5%;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            transform: scale(1.03);
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .text-hover:hover {
+            transform: scale(1.02);
+            transition: transform 0.2s ease;
+        }
+
+        .badge-gray {
+            background: rgba(255, 255, 255, 0.07);
+            color: #83858a;
+            font-size: 10px;
+            padding: 2px 10px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .icon-box {
+            color: #e9b97b;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .blue-icon { color: #3b82f6; }
+        
+        .nav-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background: rgba(5, 5, 8, 0.8);
             backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        .img-container {
-            overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .section-images img {
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.8s ease;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(67, 56, 202, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(30, 64, 175, 0.1) 0%, transparent 40%);
+            z-index: -1;
         }
 
-        .img-container:hover img {
-            transform: scale(1.1);
+        .gradient-text {
+            background: linear-gradient(to right, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        /* Content Section */
-        .section-white {
-            background: white;
-            color: #1a1a1a;
-            padding: 100px 40px;
-            border-radius: 40px 40px 0 0;
-            margin-top: -40px;
-            position: relative;
-            z-index: 2;
+        .btn-primary {
+            background: #581cff;
+            transition: all 0.3s ease;
         }
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
+        .btn-primary:hover {
+            background: #4314cc;
+            transform: translateY(-2px);
         }
 
-        h3 {
-            font-size: 32px;
-            color: var(--dark-blue);
-            margin-bottom: 25px;
-            border-left: 5px solid var(--primary-gold);
-            padding-left: 15px;
+        .timeline-line {
+            width: 2px;
+            background: linear-gradient(to bottom, #581cff, #a78bfa, transparent);
         }
 
-        .feature-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            text-align: left;
-            margin-top: 40px;
+        :root {
+            --bg-dark: #08090b;
+            --card-bg: rgba(17, 18, 23, 0.6);
+            --gold-primary: #e9b97b;
+            --gold-secondary: #a37d4d;
+            --blue-accent: #79a6f6;
         }
 
-        .feature-item {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 15px;
-            border: 1px solid #eee;
-            transition: 0.3s;
-        }
-
-        .feature-item:hover {
-            border-color: var(--primary-gold);
-            background: #fff;
-        }
-
-        .domain-badge {
-            display: inline-block;
-            background: #e9ecef;
-            padding: 5px 15px;
-            border-radius: 8px;
-            margin: 5px;
-            font-family: monospace;
-            font-weight: bold;
-            color: var(--mid-blue);
-        }
-
-        /* Footer */
-        .footer {
-            padding: 60px 20px;
-            background: #050816;
-            font-size: 14px;
-            color: #666;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-
-        @media (max-width: 768px) {
-            .hero { padding: 100px 20px; }
-            .section-images { padding: 50px 20px; }
+        .ambient-light {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(196, 150, 93, 0.05) 0%, transparent 70%);
+            top: 10%;
+            left: -100px;
+            z-index: -1;
         }
     </style>
 </head>
 <body>
+    <div class="bg-glow"></div>
 
-<header class="hero">
-    <h1>PisoCat</h1>
-    <h2>Plataforma inteligente de inmuebles en Cataluña</h2>
-    <h2>Smart Real Estate Platform for Catalonia</h2>
-    <p>Innovando el sector inmobiliario con inteligencia de datos y enfoque exclusivo en el mercado catalán.<br>
-    Proyecto estratégico en desarrollo.</p>
-    <a class="btn" href="mailto:pisocat.sale@gmail.com">Contact for acquisition</a>
-</header>
+    <nav class="nav-fixed">
+        <div class="flex justify-between items-center px-10 py-6 max-w-7xl mx-auto">
+            <div class="text-2xl font-bold gradient-text">PisoCat</div>
+            <div class="hidden md:flex space-x-8 text-sm text-gray-400">
+                <a href="#valor" class="hover:text-white transition" id="nav-val">Valor de Marca</a>
+                <a href="#vision" class="hover:text-white transition" id="nav-vis">Visión</a>
+                <a href="#paquete" class="hover:text-white transition" id="nav-paq">Paquete</a>
+                <a href="#casos" class="hover:text-white transition" id="nav-cas">Casos de Uso</a>
+                <a href="#contacto" class="hover:text-white transition" id="nav-con">Contacto</a>
+            </div>
+            <button id="langToggle" class="text-sm border border-gray-700 px-3 py-1 rounded-full hover:bg-white/5 transition">
+                🌐 <span id="langText">EN</span>
+            </button>
+        </div>
+    </nav>
 
-<section class="section-images">
-    <div class="img-container">
-        <img src="https://res.cloudinary.com/dwgudo3bq/image/upload/f_auto,q_auto/v1770936037/IMG_2706_roat8y.jpg" alt="Luxury Apartment Barcelona">
-    </div>
-    <div class="img-container">
-        <img src="https://res.cloudinary.com/dwgudo3bq/image/upload/f_auto,q_auto/v1770936036/IMG_2707_skrvmv.jpg" alt="Modern Living Catalonia">
-    </div>
-    <div class="img-container">
-        <img src="https://res.cloudinary.com/dwgudo3bq/image/upload/f_auto,q_auto/v1770936036/IMG_2708_kqkpgf.jpg" alt="Premium Property Management">
-    </div>
-</section>
+    <header class="text-center mt-32 px-4">
+        <h1 class="text-7xl font-bold gradient-text mb-4">PisoCat</h1>
+        <div class="flex justify-center gap-2 mb-6">
+            <span class="text-xs bg-gray-800 px-3 py-1 rounded-full text-gray-400">.com</span>
+            <span class="text-xs bg-gray-800 px-3 py-1 rounded-full text-gray-400">.es</span>
+        </div>
+        <p class="text-xl font-semibold mb-2" id="hero-title">El Futuro del Inmobiliario Inteligente en España</p>
+        <p class="text-gray-400 mb-10" id="hero-subtitle">Marca PropTech premium lista para fundadores visionarios</p>
 
-<main class="section-white">
-    <div class="container">
-        <h3>Premium PropTech Brand</h3>
-        <p>PisoCat.com representa una oportunidad única para liderar el mercado tecnológico-inmobiliario en Cataluña.</p>
+        <div class="flex justify-center gap-4 mb-16">
+            <a href="mailto:pisocat.sale@gmail.com" class="btn-primary px-8 py-3 rounded-lg font-semibold block" id="btn-buy">Adquirir Esta Marca</a>
+            <a href="mailto:pisocat.sale@gmail.com?subject=Offer%20for%20PisoCat" class="bg-transparent border border-gray-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-900 block" id="btn-offer">Hacer una Oferta</a>
+        </div>
+
+        <div class="flex justify-center gap-8 max-w-2xl mx-auto">
+            <div class="glass-card flex-1 p-6 text-center">
+                <div class="text-3xl font-bold text-blue-400">14.832</div>
+                <div class="text-xs text-gray-500 uppercase mt-1" id="stats-views">Visualizaciones de Interés</div>
+            </div>
+            <div class="glass-card flex-1 p-6 text-center">
+                <div class="text-3xl font-bold text-orange-400">247</div>
+                <div class="text-xs text-gray-500 uppercase mt-1" id="stats-invest">Inversores Potenciales Alcanzados</div>
+            </div>
+        </div>
+        <p class="text-[10px] text-gray-600 mt-4" id="stats-disclaimer">* Métricas de engagement simuladas</p>
+    </header>
+
+    <section id="valor" class="max-w-5xl mx-auto mt-32 px-4 pt-20">
+        <h2 class="text-4xl font-bold text-center mb-2" id="val-h2">Valor Estratégico de Marca</h2>
+        <p class="text-center text-gray-400 mb-12" id="val-p">Un nombre diseñado para dominar el PropTech español</p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="glass-card p-8">
+                <div class="text-blue-500 mb-4">🔍</div>
+                <h3 class="font-bold mb-2" id="val-c1-t">"Piso" — Inmobiliario Español</h3>
+                <p class="text-sm text-gray-400" id="val-c1-d">"Piso" es la palabra principal para vivienda en España. Reconocimiento instantáneo entre más de 580M de hispanohablantes.</p>
+            </div>
+            <div class="glass-card p-8">
+                <div class="text-purple-500 mb-4">📍</div>
+                <h3 class="font-bold mb-2" id="val-c2-t">"Cat" — Identidad Catalana</h3>
+                <p class="text-sm text-gray-400" id="val-c2-d">Cataluña es el mercado inmobiliario más rico de España. Solo Barcelona mueve miles de millones en transacciones anuales.</p>
+            </div>
+            <div class="glass-card p-8">
+                <div class="text-blue-500 mb-4">🌐</div>
+                <h3 class="font-bold mb-2" id="val-c3-t">Poder de Doble Dominio</h3>
+                <p class="text-sm text-gray-400" id="val-c3-d">PisoCat.com para autoridad global + PisoCat.es para confianza local. Un activo de marca bi-mercado excepcional.</p>
+            </div>
+            <div class="glass-card p-8">
+                <div class="text-purple-500 mb-4">✨</div>
+                <h3 class="font-bold mb-2" id="val-c4-t">Preparado para IA y PropTech</h3>
+                <p class="text-sm text-gray-400" id="val-c4-d">Corto, memorable y perfectamente posicionado para las plataformas inmobiliarias con IA del mañana.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="vision" class="max-w-3xl mx-auto mt-32 px-4 pt-20">
+        <h2 class="text-4xl font-bold text-center mb-2" id="vis-h2">Visión Conceptual</h2>
+        <p class="text-center text-gray-400 mb-16" id="vis-p">Una marca con una hoja de ruta lista para ejecutar</p>
+
+        <div class="relative">
+            <div class="timeline-line absolute left-1/2 transform -translate-x-1/2 h-full"></div>
+            
+            <div class="relative mb-12 flex justify-start w-full">
+                <div class="glass-card p-6 w-[45%] text-right relative">
+                    <span class="text-xs text-orange-400 font-bold block mb-1" id="vis-t1">Año 1</span>
+                    <h4 class="font-bold mb-2" id="vis-h1">Plataforma de Búsqueda con IA</h4>
+                    <p class="text-xs text-gray-400" id="vis-d1">Lanzar un motor de búsqueda inmobiliaria con IA para el mercado español con recomendaciones inteligentes.</p>
+                    <div class="absolute top-1/2 -right-[26px] w-3 h-3 bg-purple-500 rounded-full shadow-[0_0_10px_#a78bfa]"></div>
+                </div>
+            </div>
+
+            <div class="relative mb-12 flex justify-end w-full">
+                <div class="glass-card p-6 w-[45%] text-left relative">
+                    <span class="text-xs text-orange-400 font-bold block mb-1" id="vis-t2">Año 2</span>
+                    <h4 class="font-bold mb-2" id="vis-h2-t">Contratos Inteligentes y Automatización</h4>
+                    <p class="text-xs text-gray-400" id="vis-d2">Integrar contratos inteligentes basados en blockchain para procesos de alquiler y venta transparentes.</p>
+                    <div class="absolute top-1/2 -left-[26px] w-3 h-3 bg-purple-500 rounded-full shadow-[0_0_10px_#a78bfa]"></div>
+                </div>
+            </div>
+
+            <div class="relative flex justify-start w-full">
+                <div class="glass-card p-6 w-[45%] text-right relative">
+                    <span class="text-xs text-orange-400 font-bold block mb-1" id="vis-t3">Año 3</span>
+                    <h4 class="font-bold mb-2" id="vis-h3">Expansión Europea</h4>
+                    <p class="text-xs text-gray-400" id="vis-d3">Escalar la plataforma a mercados europeos, posicionando PisoCat como líder continental PropTech.</p>
+                    <div class="absolute top-1/2 -right-[26px] w-3 h-3 bg-purple-500 rounded-full shadow-[0_0_10px_#a78bfa]"></div>
+                </div>
+            </div>
+        </div>
+        <p class="text-center text-[10px] text-gray-600 mt-20 italic" id="vis-disclaim">* Esta es una visión conceptual de la marca — no un compromiso ni garantía de desarrollo.</p>
+    </section>
+
+    <div class="ambient-light"></div>
+    
+    <section id="paquete" class="max-w-6xl mx-auto mb-32 pt-20">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gradient-gold mb-4 text-hover" id="paq-h2">Paquete de Marca Premium</h2>
+            <p class="text-gray-500 text-sm" id="paq-p">Todo lo que necesitas para lanzar una marca PropTech que defina su categoría</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+            <div class="glass-card p-8 flex flex-col items-center text-center">
+                <i data-lucide="globe" class="icon-box w-6 h-6"></i>
+                <h3 class="font-bold text-lg mb-1">PisoCat.com</h3>
+                <span class="badge-gray mb-4" id="paq-b1">Dominio Global Principal</span>
+                <p class="text-[11px] text-gray-500 leading-relaxed" id="paq-d1">El dominio .com insignia — tu autoridad global en PropTech.</p>
+            </div>
+            <div class="glass-card p-8 flex flex-col items-center text-center">
+                <i data-lucide="map-pin" class="icon-box w-6 h-6"></i>
+                <h3 class="font-bold text-lg mb-1">PisoCat.es</h3>
+                <div class="flex flex-col gap-1 mb-4">
+                    <span class="badge-gray" id="paq-b2">Dominio de Autoridad</span>
+                    <span class="badge-gray" id="paq-b3">Regional</span>
+                </div>
+                <p class="text-[11px] text-gray-500 leading-relaxed" id="paq-d2">Dominio de código de país para máxima confianza en el mercado español.</p>
+            </div>
+            <div class="glass-card p-8 flex flex-col items-center text-center">
+                <i data-lucide="cpu" class="icon-box w-6 h-6"></i>
+                <h3 class="font-bold text-lg mb-1">ai.pisocat.com</h3>
+                <span class="badge-gray mb-4" id="paq-b4">Subdominio Sugerido</span>
+                <p class="text-[11px] text-gray-500 leading-relaxed" id="paq-d3">Perfecto para funcionalidades de IA y matching inmobiliario inteligente.</p>
+            </div>
+            <div class="glass-card p-8 flex flex-col items-center text-center">
+                <i data-lucide="smartphone" class="icon-box w-6 h-6"></i>
+                <h3 class="font-bold text-lg mb-1">app.pisocat.com</h3>
+                <span class="badge-gray mb-4" id="paq-b5">Subdominio Sugerido</span>
+                <p class="text-[11px] text-gray-500 leading-relaxed" id="paq-d4">Listo para tu plataforma de aplicación móvil y web.</p>
+            </div>
+        </div>
+
+        <div class="glass-card p-10 text-center max-w-4xl mx-auto">
+            <i data-lucide="palette" class="w-8 h-8 mx-auto mb-6 text-purple-400"></i>
+            <h3 class="font-bold text-xl mb-3" id="paq-id-t">Concepto de Identidad de Marca</h3>
+            <p class="text-sm text-gray-400 leading-relaxed max-w-2xl mx-auto" id="paq-id-d">
+                El comprador recibe una guía de posicionamiento de marca curada que incluye sugerencias tipográficas, paleta de colores y estrategia de posicionamiento de lujo.
+            </p>
+        </div>
+    </section>
+
+    <section id="casos" class="max-w-5xl mx-auto mb-32 pt-20">
+        <div class="text-center mb-16">
+            <h2 class="text-5xl font-bold text-gradient-blue mb-4 text-hover" id="cas-h2">Casos de Uso PropTech</h2>
+            <p class="text-gray-500 text-sm" id="cas-p">Posibilidades ilimitadas para la marca PisoCat</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="glass-card p-10">
+                <i data-lucide="brain-circuit" class="blue-icon w-8 h-8 mb-6"></i>
+                <h3 class="text-xl font-bold mb-3" id="cas-c1-t">Marketplace Inmobiliario con IA</h3>
+                <p class="text-sm text-gray-500" id="cas-c1-d">Descubrimiento de propiedades con IA, filtros inteligentes, tours virtuales y precios predictivos.</p>
+            </div>
+            <div class="glass-card p-10">
+                <i data-lucide="home" class="blue-icon w-8 h-8 mb-6"></i>
+                <h3 class="text-xl font-bold mb-3" id="cas-c2-t">Plataforma de Alquiler Inteligente</h3>
+                <p class="text-sm text-gray-500" id="cas-c2-d">Gestión de alquileres automatizada con contratos digitales, pagos y evaluación de inquilinos.</p>
+            </div>
+            <div class="glass-card p-10">
+                <i data-lucide="bar-chart-3" class="blue-icon w-8 h-8 mb-6"></i>
+                <h3 class="text-xl font-bold mb-3" id="cas-c3-t">SaaS de Analítica Inmobiliaria</h3>
+                <p class="text-sm text-gray-500" id="cas-c3-d">Insights basados en datos para inversores, agentes y desarrolladores con inteligencia de mercado.</p>
+            </div>
+            <div class="glass-card p-10">
+                <i data-lucide="gem" class="blue-icon w-8 h-8 mb-6"></i>
+                <h3 class="text-xl font-bold mb-3" id="cas-c4-t">Listados de Propiedades de Lujo</h3>
+                <p class="text-sm text-gray-500" id="cas-c4-d">Una plataforma exclusiva para propiedades de alto nivel con experiencias premium.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-5xl mx-auto mb-32">
+        <h2 class="text-4xl font-bold text-center text-gradient-gold mb-16 text-hover" id="why-h2">Por Qué Importa Esta Marca</h2>
         
-        <div style="margin: 30px 0;">
-            <strong>Asset Portfolio:</strong><br>
-            <span class="domain-badge">PisoCat.com</span>
-            <span class="domain-badge">PisoCat.es</span>
-            <span class="domain-badge">ai.pisocat.com</span>
-            <span class="domain-badge">app.pisocat.com</span>
-<span class="domain-badge">ai.pisocat.es</span>
-            <span class="domain-badge">app.pisocat.es</span>
-        </div>
-
-        <div class="feature-list">
-            <div class="feature-item">
-                <strong>Intelligent Search</strong>
-                <p>Búsqueda inteligente avanzada adaptada al usuario.</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 text-center">
+            <div class="glass-card p-10">
+                <i data-lucide="trending-up" class="w-5 h-5 mx-auto mb-4 text-orange-200 opacity-50"></i>
+                <div class="text-4xl font-bold text-gradient-gold mb-2">$18.2B</div>
+                <div class="text-[10px] text-gray-500 uppercase font-medium" id="why-s1">Mercado PropTech Global (2024)</div>
             </div>
-            <div class="feature-item">
-                <strong>Real-Time Data</strong>
-                <p>Análisis del mercado inmobiliario en tiempo real.</p>
+            <div class="glass-card p-10">
+                <i data-lucide="users" class="w-5 h-5 mx-auto mb-4 text-orange-200 opacity-50"></i>
+                <div class="text-4xl font-bold text-gradient-gold mb-2">580M+</div>
+                <div class="text-[10px] text-gray-500 uppercase font-medium" id="why-s2">Hispanohablantes en el Mundo</div>
             </div>
-            <div class="feature-item">
-                <strong>Local Focus</strong>
-                <p>Especialización total en el mercado de Cataluña.</p>
-            </div>
-            <div class="feature-item">
-                <strong>Multilingual</strong>
-                <p>Interfaz optimizada en Catalán, Castellano e Inglés.</p>
+            <div class="glass-card p-10">
+                <i data-lucide="activity" class="w-5 h-5 mx-auto mb-4 text-orange-200 opacity-50"></i>
+                <div class="text-4xl font-bold text-gradient-gold mb-2">27%</div>
+                <div class="text-[10px] text-gray-500 uppercase font-medium" id="why-s3">Tasa de Crecimiento Anual PropTech</div>
             </div>
         </div>
-    </div>
-</main>
 
-<center><footer class="footer">
-    <p>Evaluación de activos para Startups y Fondos de Inversión.<br>
-    © 2026 PisoCat – Premium Domain & Brand Assets.</p>
-</footer>
-</center>
+        <div class="glass-card p-10 max-w-4xl mx-auto space-y-4">
+            <div class="flex items-start gap-4 text-sm text-gray-300">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-green-500 mt-0.5 shrink-0"></i>
+                <p id="why-p1">Las marcas premium logran valoraciones <span class="text-white font-bold">3-5x mayores</span> en Serie A.</p>
+            </div>
+            <div class="flex items-start gap-4 text-sm text-gray-300">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-green-500 mt-0.5 shrink-0"></i>
+                <p id="why-p2">El mercado inmobiliario español representa más de <span class="text-white font-bold">€150B</span> en transacciones anuales.</p>
+            </div>
+            <div class="flex items-start gap-4 text-sm text-gray-300">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-green-500 mt-0.5 shrink-0"></i>
+                <p id="why-p3">La ventaja del primer movimiento en inmobiliaria con IA en España está <span class="text-white font-bold">completamente abierta</span>.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="max-w-4xl mx-auto mb-20 pt-20">
+        <div class="glass-card p-16 text-center border-purple-500/20">
+            <h2 class="text-5xl font-bold text-gradient-blue mb-8 text-hover" id="con-h2">Adquiere la Marca PisoCat</h2>
+            <p class="text-gray-400 text-sm mb-12 max-w-xl mx-auto leading-relaxed" id="con-p">
+                Esta es una oportunidad única de poseer una marca de dominio premium que define su categoría en uno de los mercados PropTech más dinámicos de Europa.
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-4 mb-10">
+                <a href="mailto:pisocat.sale@gmail.com" class="bg-[#581cff] hover:bg-indigo-700 px-10 py-4 rounded-xl flex items-center gap-3 font-bold transition-all shadow-lg shadow-indigo-500/20">
+                    <i data-lucide="mail" class="w-5 h-5"></i> <span id="con-btn-mail">Contactar por Email</span>
+                </a>
+                <button class="border border-gray-700 hover:bg-white/5 px-10 py-4 rounded-xl flex items-center gap-3 font-bold transition-all">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i> WhatsApp
+                </button>
+            </div>
+            <div class="text-sm text-gray-500 font-mono">pisocat.sale@gmail.com</div>
+        </div>
+    </section>
+
+    <footer class="max-w-5xl mx-auto pt-10 border-t border-white/5 text-center">
+        <div class="glass-card p-6 mb-8 text-[10px] text-gray-600 leading-relaxed" id="foo-dis">
+            Este sitio web es una página de venta de marca de dominio premium. PisoCat no es una plataforma inmobiliaria activa. Todos los elementos del roadmap, casos de uso y posicionamiento de mercado se presentan como oportunidades conceptuales.
+        </div>
+        <div class="text-blue-400 text-xs font-semibold mb-2" id="foo-sale">Marca de Dominio Premium en Venta</div>
+        <div class="text-gray-600 text-[10px]" id="foo-copy">© 2026 Marca PisoCat. Todos los derechos reservados.</div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        const translations = {
+            es: {
+                lang: "EN",
+                nav: ["Valor de Marca", "Visión", "Paquete", "Casos de Uso", "Contacto"],
+                hero: {
+                    title: "El Futuro del Inmobiliario Inteligente en España",
+                    subtitle: "Marca PropTech premium lista para fundadores visionarios",
+                    buy: "Adquirir Esta Marca",
+                    offer: "Hacer una Oferta"
+                },
+                stats: {
+                    views: "Visualizaciones de Interés",
+                    invest: "Inversores Potenciales Alcanzados",
+                    discl: "* Métricas de engagement simuladas"
+                },
+                valor: {
+                    h2: "Valor Estratégico de Marca",
+                    p: "Un nombre diseñado para dominar el PropTech español",
+                    c1t: "\"Piso\" — Inmobiliario Español",
+                    c1d: "\"Piso\" es la palabra principal para vivienda en España. Reconocimiento instantáneo entre más de 580M de hispanohablantes.",
+                    c2t: "\"Cat\" — Identidad Catalana",
+                    c2d: "Cataluña es el mercado inmobiliario más rico de España. Solo Barcelona mueve miles de millones en transacciones anuales.",
+                    c3t: "Poder de Doble Dominio",
+                    c3d: "PisoCat.com para autoridad global + PisoCat.es para confianza local. Un activo de marca bi-mercado excepcional.",
+                    c4t: "Preparado para IA y PropTech",
+                    c4d: "Corto, memorable y perfectamente posicionado para las plataformas inmobiliarias con IA del mañana."
+                },
+                vision: {
+                    h2: "Visión Conceptual",
+                    p: "Una marca con una hoja de ruta lista para ejecutar",
+                    y1: "Año 1", y1h: "Plataforma de Búsqueda con IA", y1d: "Lanzar un motor de búsqueda inmobiliaria con IA para el mercado español con recomendaciones inteligentes.",
+                    y2: "Año 2", y2h: "Contratos Inteligentes y Automatización", y2d: "Integrar contratos inteligentes basados en blockchain para procesos de alquiler y venta transparentes.",
+                    y3: "Año 3", y3h: "Expansión Europea", y3d: "Escalar la plataforma a mercados europeos, posicionando PisoCat como líder continental PropTech.",
+                    dis: "* Esta es una visión conceptual de la marca — no un compromiso ni garantía de desarrollo."
+                },
+                paquete: {
+                    h2: "Paquete de Marca Premium",
+                    p: "Todo lo que necesitas para lanzar una marca PropTech que defina su categoría",
+                    b1: "Dominio Global Principal", d1: "El dominio .com insignia — tu autoridad global en PropTech.",
+                    b2: "Dominio de Autoridad", b3: "Regional", d2: "Dominio de código de país para máxima confianza en el mercado español.",
+                    b4: "Subdominio Sugerido", d3: "Perfecto para funcionalidades de IA y matching inmobiliario inteligente.",
+                    b5: "Subdominio Sugerido", d4: "Listo para tu plataforma de aplicación móvil y web.",
+                    idt: "Concepto de Identidad de Marca", idd: "El comprador recibe una guía de posicionamiento de marca curada que incluye sugerencias tipográficas, paleta de colores y estrategia de posicionamiento de lujo."
+                },
+                casos: {
+                    h2: "Casos de Uso PropTech",
+                    p: "Posibilidades ilimitadas para la marca PisoCat",
+                    c1t: "Marketplace Inmobiliario con IA", c1d: "Descubrimiento de propiedades con IA, filtros inteligentes, tours virtuales y precios predictivos.",
+                    c2t: "Plataforma de Alquiler Inteligente", c2d: "Gestión de alquileres automatizada con contratos digitales, pagos y evaluación de inquilinos.",
+                    c3t: "SaaS de Analítica Inmobiliaria", c3d: "Insights basados en datos para inversores, agentes y desarrolladores con inteligencia de mercado.",
+                    c4t: "Listados de Propiedades de Lujo", c4d: "Una plataforma exclusiva para propiedades de alto nivel con experiencias premium."
+                },
+                why: {
+                    h2: "Por Qué Importa Esta Marca",
+                    s1: "Mercado PropTech Global (2024)",
+                    s2: "Hispanohablantes en el Mundo",
+                    s3: "Tasa de Crecimiento Anual PropTech",
+                    p1: "Las marcas premium logran valoraciones 3-5x mayores en Serie A.",
+                    p2: "El mercado inmobiliario español representa más de €150B en transacciones anuales.",
+                    p3: "La ventaja del primer movimiento en inmobiliaria con IA en España está completamente abierta."
+                },
+                con: {
+                    h2: "Adquiere la Marca PisoCat",
+                    p: "Esta es una oportunidad única de poseer una marca de dominio premium que define su categoría en uno de los mercados PropTech más dinámicos de Europa.",
+                    btn: "Contactar por Email"
+                },
+                foo: {
+                    dis: "Este sitio web es una página de venta de marca de dominio premium. PisoCat no es una plataforma inmobiliaria activa. Todos los elementos del roadmap, casos de uso y posicionamiento de mercado se presentan como oportunidades conceptuales.",
+                    sale: "Marca de Dominio Premium en Venta",
+                    copy: "© 2026 Marca PisoCat. Todos los derechos reservados."
+                }
+            },
+            en: {
+                lang: "ES",
+                nav: ["Brand Value", "Vision", "Package", "Use Cases", "Contact"],
+                hero: {
+                    title: "The Future of Smart Real Estate in Spain",
+                    subtitle: "Premium PropTech brand ready for visionary founders",
+                    buy: "Acquire This Brand",
+                    offer: "Make an Offer"
+                },
+                stats: {
+                    views: "Interest Views",
+                    invest: "Potential Investors Reached",
+                    discl: "* Simulated engagement metrics"
+                },
+                valor: {
+                    h2: "Strategic Brand Value",
+                    p: "A name engineered to dominate Spanish PropTech",
+                    c1t: "\"Piso\" — Spanish Real Estate",
+                    c1d: "\"Piso\" is the primary word for housing in Spain. Instant recognition among over 580M Spanish speakers.",
+                    c2t: "\"Cat\" — Catalan Identity",
+                    c2d: "Catalonia is Spain's wealthiest real estate market. Barcelona alone moves billions in annual transactions.",
+                    c3t: "Dual Domain Power",
+                    c3d: "PisoCat.com for global authority + PisoCat.es for local trust. An exceptional bi-market brand asset.",
+                    c4t: "AI & PropTech Ready",
+                    c4d: "Short, memorable, and perfectly positioned for tomorrow's AI-driven real estate platforms."
+                },
+                vision: {
+                    h2: "Conceptual Vision",
+                    p: "A brand with a roadmap ready to execute",
+                    y1: "Year 1", y1h: "AI Search Platform", y1d: "Launch an AI real estate search engine for the Spanish market with smart recommendations.",
+                    y2: "Year 2", y2h: "Smart Contracts & Automation", y2d: "Integrate blockchain-based smart contracts for transparent rental and sales processes.",
+                    y3: "Year 3", y3h: "European Expansion", y3d: "Scale the platform to European markets, positioning PisoCat as a continental PropTech leader.",
+                    dis: "* This is a conceptual vision of the brand — not a commitment or guarantee of development."
+                },
+                paquete: {
+                    h2: "Premium Brand Package",
+                    p: "Everything you need to launch a category-defining PropTech brand",
+                    b1: "Main Global Domain", d1: "The flagship .com domain — your global authority in PropTech.",
+                    b2: "Authority Domain", b3: "Regional", d2: "Country code domain for maximum trust in the Spanish market.",
+                    b4: "Suggested Subdomain", d3: "Perfect for AI features and smart property matching.",
+                    b5: "Suggested Subdomain", d4: "Ready for your mobile and web application platform.",
+                    idt: "Brand Identity Concept", idd: "Buyer receives a curated brand positioning guide including typography suggestions, color palette, and luxury positioning strategy."
+                },
+                casos: {
+                    h2: "PropTech Use Cases",
+                    p: "Unlimited possibilities for the PisoCat brand",
+                    c1t: "AI Real Estate Marketplace", c1d: "AI property discovery, smart filters, virtual tours, and predictive pricing.",
+                    c2t: "Smart Rental Platform", c2d: "Automated rental management with digital contracts, payments, and tenant screening.",
+                    c3t: "Real Estate Analytics SaaS", c3d: "Data-driven insights for investors, agents, and developers with market intelligence.",
+                    c4t: "Luxury Property Listings", c4d: "An exclusive platform for high-end properties with premium experiences."
+                },
+                why: {
+                    h2: "Why This Brand Matters",
+                    s1: "Global PropTech Market (2024)",
+                    s2: "Spanish Speakers Worldwide",
+                    s3: "PropTech Annual Growth Rate",
+                    p1: "Premium brands achieve 3-5x higher valuations at Series A.",
+                    p2: "The Spanish real estate market represents over €150B in annual transactions.",
+                    p3: "The first-mover advantage for AI real estate in Spain is wide open."
+                },
+                con: {
+                    h2: "Acquire PisoCat Brand",
+                    p: "This is a unique opportunity to own a category-defining premium domain brand in one of Europe's most dynamic PropTech markets.",
+                    btn: "Contact via Email"
+                },
+                foo: {
+                    dis: "This website is a premium domain brand sale page. PisoCat is not an active real estate platform. All roadmap elements, use cases, and market positioning are presented as conceptual opportunities.",
+                    sale: "Premium Domain Brand for Sale",
+                    copy: "© 2026 PisoCat Brand. All rights reserved."
+                }
+            }
+        };
+
+        let currentLang = 'es';
+
+        document.getElementById('langToggle').addEventListener('click', () => {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            const t = translations[currentLang];
+            
+            // Update UI
+            document.getElementById('langText').innerText = t.lang;
+            document.getElementById('nav-val').innerText = t.nav[0];
+            document.getElementById('nav-vis').innerText = t.nav[1];
+            document.getElementById('nav-paq').innerText = t.nav[2];
+            document.getElementById('nav-cas').innerText = t.nav[3];
+            document.getElementById('nav-con').innerText = t.nav[4];
+
+            document.getElementById('hero-title').innerText = t.hero.title;
+            document.getElementById('hero-subtitle').innerText = t.hero.subtitle;
+            document.getElementById('btn-buy').innerText = t.hero.buy;
+            document.getElementById('btn-offer').innerText = t.hero.offer;
+
+            document.getElementById('stats-views').innerText = t.stats.views;
+            document.getElementById('stats-invest').innerText = t.stats.invest;
+            document.getElementById('stats-disclaimer').innerText = t.stats.discl;
+
+            document.getElementById('val-h2').innerText = t.valor.h2;
+            document.getElementById('val-p').innerText = t.valor.p;
+            document.getElementById('val-c1-t').innerText = t.valor.c1t;
+            document.getElementById('val-c1-d').innerText = t.valor.c1d;
+            document.getElementById('val-c2-t').innerText = t.valor.c2t;
+            document.getElementById('val-c2-d').innerText = t.valor.c2d;
+            document.getElementById('val-c3-t').innerText = t.valor.c3t;
+            document.getElementById('val-c3-d').innerText = t.valor.c3d;
+            document.getElementById('val-c4-t').innerText = t.valor.c4t;
+            document.getElementById('val-c4-d').innerText = t.valor.c4d;
+
+            document.getElementById('vis-h2').innerText = t.vision.h2;
+            document.getElementById('vis-p').innerText = t.vision.p;
+            document.getElementById('vis-t1').innerText = t.vision.y1;
+            document.getElementById('vis-h1').innerText = t.vision.y1h;
+            document.getElementById('vis-d1').innerText = t.vision.y1d;
+            document.getElementById('vis-t2').innerText = t.vision.y2;
+            document.getElementById('vis-h2-t').innerText = t.vision.y2h;
+            document.getElementById('vis-d2').innerText = t.vision.y2d;
+            document.getElementById('vis-t3').innerText = t.vision.y3;
+            document.getElementById('vis-h3').innerText = t.vision.y3h;
+            document.getElementById('vis-d3').innerText = t.vision.y3d;
+            document.getElementById('vis-disclaim').innerText = t.vision.dis;
+
+            document.getElementById('paq-h2').innerText = t.paquete.h2;
+            document.getElementById('paq-p').innerText = t.paquete.p;
+            document.getElementById('paq-b1').innerText = t.paquete.b1;
+            document.getElementById('paq-d1').innerText = t.paquete.d1;
+            document.getElementById('paq-b2').innerText = t.paquete.b2;
+            document.getElementById('paq-b3').innerText = t.paquete.b3;
+            document.getElementById('paq-d2').innerText = t.paquete.d2;
+            document.getElementById('paq-b4').innerText = t.paquete.b4;
+            document.getElementById('paq-d3').innerText = t.paquete.d3;
+            document.getElementById('paq-b5').innerText = t.paquete.b5;
+            document.getElementById('paq-d4').innerText = t.paquete.d4;
+            document.getElementById('paq-id-t').innerText = t.paquete.idt;
+            document.getElementById('paq-id-d').innerText = t.paquete.idd;
+
+            document.getElementById('cas-h2').innerText = t.casos.h2;
+            document.getElementById('cas-p').innerText = t.casos.p;
+            document.getElementById('cas-c1-t').innerText = t.casos.c1t;
+            document.getElementById('cas-c1-d').innerText = t.casos.c1d;
+            document.getElementById('cas-c2-t').innerText = t.casos.c2t;
+            document.getElementById('cas-c2-d').innerText = t.casos.c2d;
+            document.getElementById('cas-c3-t').innerText = t.casos.c3t;
+            document.getElementById('cas-c3-d').innerText = t.casos.c3d;
+            document.getElementById('cas-c4-t').innerText = t.casos.c4t;
+            document.getElementById('cas-c4-d').innerText = t.casos.c4d;
+
+            document.getElementById('why-h2').innerText = t.why.h2;
+            document.getElementById('why-s1').innerText = t.why.s1;
+            document.getElementById('why-s2').innerText = t.why.s2;
+            document.getElementById('why-s3').innerText = t.why.s3;
+            document.getElementById('why-p1').innerHTML = t.why.p1.replace('3-5x', '<span class="text-white font-bold">3-5x</span>');
+            document.getElementById('why-p2').innerHTML = t.why.p2.replace('€150B', '<span class="text-white font-bold">€150B</span>');
+            document.getElementById('why-p3').innerHTML = t.why.p3.replace('completamente abierta', '<span class="text-white font-bold">completamente abierta</span>');
+
+            document.getElementById('con-h2').innerText = t.con.h2;
+            document.getElementById('con-p').innerText = t.con.p;
+            document.getElementById('con-btn-mail').innerText = t.con.btn;
+
+            document.getElementById('foo-dis').innerText = t.foo.dis;
+            document.getElementById('foo-sale').innerText = t.foo.sale;
+            document.getElementById('foo-copy').innerText = t.foo.copy;
+        });
+    </script>
 </body>
 </html>
-
