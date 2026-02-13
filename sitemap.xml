@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- Homepage -->
+    <url>
+        <loc>https://www.pisocat.com/</loc>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- Hero Section -->
+    <url>
+        <loc>https://www.pisocat.com/#hero</loc>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Brand Value -->
+    <url>
+        <loc>https://www.pisocat.com/#valor-de-marca</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Vision / Roadmap -->
+    <url>
+        <loc>https://www.pisocat.com/#vision</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Years / Phases -->
+    <url>
+        <loc>https://www.pisocat.com/#ano-1</loc>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://www.pisocat.com/#ano-2</loc>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://www.pisocat.com/#ano-3</loc>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Premium Package -->
+    <url>
+        <loc>https://www.pisocat.com/#paquete</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Use Cases -->
+    <url>
+        <loc>https://www.pisocat.com/#casos-de-uso</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.pisocat.com/#marketplace-ia</loc>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://www.pisocat.com/#plataforma-alquiler</loc>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://www.pisocat.com/#saas-analytics</loc>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://www.pisocat.com/#listados-lujo</loc>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Premium Asset -->
+    <url>
+        <loc>https://www.pisocat.com/#premium-asset</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Contact -->
+    <url>
+        <loc>https://www.pisocat.com/#contact</loc>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Subdomains -->
+    <url>
+        <loc>https://ai.pisocat.com/</loc>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://app.pisocat.com/</loc>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- Legal -->
+    <url>
+        <loc>https://www.pisocat.com/#legal</loc>
+        <priority>0.5</priority>
+    </url>
+</urlset>
